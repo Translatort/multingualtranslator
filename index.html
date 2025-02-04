@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdul Rahman - Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f8ff;
+            color: #37474f;
+            margin: 0;
+            overflow-x: hidden;
+            line-height: 1.7;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Advanced Header Styles */
+        header {
+            background: linear-gradient(135deg, #e0f7fa, #b3e5fc, #81d4fa);
+            padding: 70px 20px;
+            text-align: center;
+            border-bottom: 4px solid #90caf9;
+            margin-bottom: 60px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* Animated Wave Background */
+        header::before {
+            content: '';
+            position: absolute;
+            bottom: -50px; /* Start below header */
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 200" preserveAspectRatio="none"><path d="M0,100 C150,200 350,0 500,100 L1000,0 L1000,200 L0,200 Z" style="fill:%23e3f2fd;" /></svg>') repeat-x;
+            background-size: 1000px 200px; /* Adjust for wave frequency */
+            animation: wave 8s linear infinite;
+            z-index: 0;
+            opacity: 0.8;
+        }
+
+        @keyframes wave {
+            0% {
+                background-position-x: 0;
+            }
+            100% {
+                background-position-x: 1000px; /* Moves the wave */
+            }
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #90caf9;
+            box-shadow: 0 0 20px rgba(144, 202, 249, 0.7);
+            margin-bottom: 40px;
+            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-image:hover {
+            border-color: #42a5f5;
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(66, 165, 245, 0.8);
+        }
+
+        .title-text {
+            font-size: 3.5em;
+            font-weight: 700;
+            color: #1565c0;
+            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Animated Subtitle Styles */
+        .subtitle-text {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.5em;
+            color: #455a64;
+            letter-spacing: 1px;
+            font-weight: 500;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 15px;
+            z-index: 1;
+            overflow: hidden; /* Hide the lines initially */
+            white-space: nowrap; /* Prevent text from wrapping */
+            animation: typing 3s steps(30, end) forwards,
+            blink-caret .75s step-end infinite;
+        }
+          /* Keyframes for the typewriter effect */
+          @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+          /* Keyframes for the blinking cursor */
+          @keyframes blink-caret {
+              from, to { border-color: transparent }
+              50% { border-color: #64b5f6; }
+          }
+        /* Animated Gradient Lines */
+        .subtitle-text::before,
+        .subtitle-text::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 30px;
+            height: 3px;
+            background: linear-gradient(to right, rgba(100, 181, 246, 0.8), rgba(66, 165, 245, 0));
+            transition: width 0.5s ease;
+        }
+
+        .subtitle-text::before {
+            left: 25%;
+        }
+
+        .subtitle-text::after {
+            right: 25%;
+        }
+
+        .contact-details {
+            position: relative;
+            z-index: 1;
+            color: #546e7a;
+            margin-top: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-details a {
+            color: #1e88e5;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-details a:hover {
+            color: #42a5f5;
+        }
+
+        /* Advanced Section Styles */
+        #about,
+        #experience,
+        #skills,
+        #education,
+        #languages {
+            padding: 60px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            margin-bottom: 50px;
+            box-shadow: 0 7px 18px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            padding: 30px;
+        }
+
+        .project-card {
+            background-color: rgba(227, 242, 253, 0.8);
+            padding: 40px;
+            border-radius: 18px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid rgba(187, 222, 251, 0.7); /* Thicker border */
+        }
+
+        .project-card h3 {
+            font-size: 2em;
+            font-weight: 700;
+            color: #1976d2;
+            margin-bottom: 20px;
+        }
+
+        .project-card p {
+            color: #455a64;
+            margin-bottom: 25px;
+        }
+
+        /* Image Placeholder */
+        .project-image {
+            width: 100%;
+            height: 280px; /* Increased size */
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* For slight zoom on hover */
+        }
+
+        .project-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Skills Style */
+        #skills ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #skills ul li {
+            background-color: #bbdefb;
+            color: #1a237e;
+            padding: 15px 25px;
+            margin: 10px;
+            border-radius: 30px;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Add transitions */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+        }
+
+        #skills ul li:hover {
+            background-color: #90caf9;
+            transform: translateY(-3px); /* Lift slightly */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+            cursor: pointer;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #fff;
+            padding: 40px;
+            text-align: center;
+            border-top: 2px solid #c5cae9;
+            color: #546e7a;
+            box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Hover Effects */
+        .project-card:hover,
+        #about:hover,
+        #experience:hover,
+        #skills:hover,
+        #education:hover,
+        #languages:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .subtitle-text::before,
+            .subtitle-text::after {
+                display: none;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        });
+    </script>
+</head>
+<body>
+
+<header>
+    <img src="https://media.licdn.com/dms/image/v2/D4D03AQEIlnDc9W7X8Q/profile-displayphoto-shrink_400_400/B4DZRrM9RUHcAg-/0/1736965351865?e=1744243200&v=beta&t=1HsseZPuO9Dz-BMV43cutKmJIwPYZM2d1OKfQa3IYrc"
+         alt="Abdul Rahman" class="profile-image">
+    <h1 class="title-text">Abdul Rahman</h1>
+    <p class="subtitle-text">
+        Civil Engineer | Translator | Problem Solver
+    </p>
+    <div class="contact-details">
+        D8-G34-B4-P25, 1001, Kabul, Afghanistan. | +93 (786) 633-279 | <a
+            href="mailto:abdulafg93@outlook.com">abdulafg93@outlook.com</a>
+        <br>
+        <a href="https://www.linkedin.com/in/abdul-rahman93" target="_blank">LinkedIn Profile</a>
+    </div>
+</header>
+
+<section id="about">
+    <h2>About Me</h2>
+    <p>A driven and adaptable professional ready to contribute to an innovative organization. Passionate about leveraging both engineering and translation expertise to solve complex problems and build a better, more connected world. Seeking a challenging environment to further enhance skills and make a meaningful impact.</p>
+</section>
+
+<section id="experience">
+    <h2>Experience</h2>
+    <div class="project-grid">
+        <div class="project-card">
+            <h3>Pashto/Dari Translator & Proofreader</h3>
+            <p>CCI Group - Interpretation & Translation (August 2024 - Present)</p>
+            <p>Proofread and edited Pashto/Dari documents to ensure linguistic accuracy. Identified and corrected grammatical, spelling, and punctuation errors, ensuring quality translations that bridge communication gaps.</p>
+            <img src="data:image/png;base64,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"
+                 alt="Translation Project" class="project-image">
+        </div>
+
+        <div class="project-card">
+            <h3>Volunteer - Network of Sustainable Development and Education</h3>
+            <p>NSDE (Jul 2024 - Present)</p>
+            <p>Volunteering to empower Afghan girls through quality online education. Contributing to NSDE's flagship initiative, aiming to bridge educational gaps and create opportunities.</p>
+            <img src="https://media.licdn.com/dms/image/v2/D4E0BAQGuoAQiq7km8w/company-logo_200_200/company-logo_200_200/0/1706870110093?e=1746662400&v=beta&t=CGife2U53ufO78Ib7ZTkd0J9QiwZg1nQTxbiHRmMma4"
+                 alt="Education Project" class="project-image">
+        </div>
+
+        <div class="project-card">
+            <h3>Site Engineer</h3>
+            <p>Zwakman Nabizai Construction Company / Helmand AFG (May 2021 - August 2021)</p>
+            <p>Site engineer at ZNCC, the Prime Contractor of USAID and USACE Projects in Afghanistan. Involved in the design, construction, expansion, and upgrade of high-voltage (HV) systems.</p>
+            <img src="https://media.licdn.com/dms/image/v2/C4D0BAQFaaKdom5Glvg/company-logo_200_200/company-logo_200_200/0/1630525936587/zncc_logo?e=1746662400&v=beta&t=4jO-SIcQQls1k90hU-4mpABzJiKZ7gDGrZCx1RRwAhw"
+                 alt="Site Engineering Project" class="project-image">
+        </div>
+
+        <div class="project-card">
+            <h3>Construction Supervisor</h3>
+            <p>Rauf Aziz Construction Company / Badakhshan AFG (May 2022 - May 2021)</p>
+            <p>Construction supervisor for Rauf Aziz Construction Company on a 160 Million USD ADB-funded road infrastructure project in Afghanistan.</p>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvfrfz7wAnPgBAFaL0jgIATzKxIWcndOv40Q&s"
+                 alt="Construction Project" class="project-image">
+        </div>
+
+        <div class="project-card">
+            <h3>Site Engineer</h3>
+            <p>Kargar-E-Watan Construction Company (KWCC) / Ministry of Defence Kabul (Mar 2019-Jan 2020)</p>
+            <p>Site Engineer at KWCC, responsible for preparing and verifying structural layouts, ensuring they fit field conditions, and checking technical designs.</p>
+            <img src="https://media.licdn.com/dms/image/v2/D4E0BAQHUvsXG1KCnlQ/company-logo_200_200/company-logo_200_200/0/1723282217243?e=1746662400&v=beta&t=wOYvYpayBM-K_7f98u4oCHgGsCP7yiGD2rdKMZVhllU"
+                 alt="Site Engineering Project" class="project-image">
+        </div>
+
+        <div class="project-card">
+            <h3>Site Engineer</h3>
+            <p>Organization for Research and Community Development (ORCD) / Baghlan AFG (Apr, 2016 -Jan 2019)</p>
+            <p>Site Engineer at ORCD, responsible for preparing daily progress reports complete with photographs showing work in progress and managing site operations.</p>
+            <img src="https://www.bast.af/company_logos/organization-for-research-community-development-orcd-1661055577-703.jpg"
+                 alt="Site Engineering Project" class="project-image">
+        </div>
+    </div>
+</section>
+
+<section id="skills">
+    <h2>Skills</h2>
+    <ul>
+        <li>Pashto/Dari Translation & Proofreading</li>
+        <li>Civil Engineering</li>
+        <li>Site Supervision</li>
+        <li>Construction</li>
+        <li>Problem Solving</li>
+        <li>Team Building</li>
+        <li>Communication</li>
+        <li>Language Proficiency</li>
+        <li>Internet & Photoshop</li>
+        <li>Transcription</li>
+    </ul>
+</section>
+
+<section id="education">
+    <h2>Education</h2>
+    <p>B.Sc in Civil Engineering, Dawat University / Kabul AFG (2016)</p>
+    <p>High school, Rahman baba / Peshawar Pakistan (2012)</p>
+    <p>Diploma in English, Afghan Youth Network (AYN) (2010)</p>
+</section>
+
+<section id="languages">
+    <h2>Languages</h2>
+    <p>Pashto, Dari (Native)</p>
+    <p>Urdu, Hindi</p>
+    <p>Persian</p>
+    <p>English</p>
+</section>
+
+<footer>
+    <p>© 2024 Abdul Rahman</p>
+</footer>
+
+</body>
+</html>
